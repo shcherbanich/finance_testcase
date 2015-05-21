@@ -1,0 +1,21 @@
+{
+  "name": "finance_testcase",
+  "version": "1.0.0",
+  "authors": [
+    "scherbanich <filippf@bk.ru>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "highcharts": "~4.1.5",
+    "nprogress": "~0.2.0",
+    "select2": "~4.0.0"
+  }
+}

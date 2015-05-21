@@ -1,0 +1,23 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block content %}
+    <h1 class="title">Авторизация</h1>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.message }}</div>
+    {% endif %}
+
+    <form action="{{ path("_security_check") }}" method="post" id="login">
+        <div>
+            <label for="username">Логин</label>
+            <input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}" />
+        </div>
+
+        <div>
+            <label for="password">Пароль</label>
+            <input type="password" class="form-control" id="password" name="_password" />
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success">Войти на сайт</button>
+    </form>
+{% endblock %}
