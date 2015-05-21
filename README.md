@@ -9,15 +9,17 @@ finance_testcase
 
  composer install --optimize-autoloader
 
+ bower install
+
  php app/console router:debug --env=prod
 
  php app/console assets:install --symlink
 
  php app/console doctrine:database:create --if-not-exists
 
- php app/console doctrine:schema:update --force
+ php app/console doctrine:schema:update
 
- php app/console doctrine:fixtures:load --purge-with-truncate
+ php app/console doctrine:fixtures:load
 
 
 Субд mysql, php 5.4+
