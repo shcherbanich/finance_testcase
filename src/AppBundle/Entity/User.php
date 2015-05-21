@@ -108,11 +108,7 @@ class User implements UserInterface, \Serializable
 
     /**
      *
-     * @ORM\ManyToMany(targetEntity="\SharesBundle\Entity\Share")
-     * @ORM\JoinTable(name="user_share",
-     *     joinColumns={@ORM\JoinColumn(name="id_user", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="id_share", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Share", mappedBy="user")
      */
     private $userShare;
 
@@ -396,10 +392,10 @@ class User implements UserInterface, \Serializable
     /**
      * Add userShare
      *
-     * @param \SharesBundle\Entity\Share $userShare
+     * @param \AppBundle\Entity\Share $userShare
      * @return User
      */
-    public function addUserShare(\SharesBundle\Entity\Share $idShare)
+    public function addUserShare(Share $idShare)
     {
         $this->userShare[] = $idShare;
 
@@ -409,9 +405,9 @@ class User implements UserInterface, \Serializable
     /**
      * Remove userShare
      *
-     * @param \SharesBundle\Entity\Share $userShare
+     * @param \AppBundle\Entity\Share $userShare
      */
-    public function removeUserShare(\SharesBundle\Entity\Share $idShare)
+    public function removeUserShare(Share $idShare)
     {
         $this->userShare->removeElement($idShare);
     }

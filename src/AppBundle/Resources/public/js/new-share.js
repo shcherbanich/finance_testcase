@@ -41,13 +41,13 @@ $(document).ready(function(){
             symbol = $(this).attr('data-symbol');
         $('.js-data-ajax').val(text).trigger("change").select2("close");
         $('.select2-selection__rendered').text(text);
-        $('input#sharesbundle_share_name').val(symbol);
-        $('input#sharesbundle_share_fullName').val(text);
+        $('input#appbundle_share_name').val(symbol);
+        $('input#appbundle_share_fullName').val(text);
         $('#submit_form').attr('disabled',false);
     });
 
     $('#submit_form').click(function(){
-        if($('input#sharesbundle_share_name').val())
+        if($('input#appbundle_share_name').val())
             $('form').submit();
         else
             alert('Требуется выбрать акцию!');

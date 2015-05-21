@@ -54,11 +54,7 @@ class Share
 
     /**
      *
-     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\User")
-     * @ORM\JoinTable(name="user_share",
-     *     joinColumns={@ORM\JoinColumn(name="id_share", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="id_user", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\User", mappedBy="userShare")
      */
     private $user;
 

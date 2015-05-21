@@ -1,0 +1,23 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body -%}
+<h1>{{ form(delete_form) }}</h1>
+    <div class='chart'>
+        Идет загрузка...
+    </div>
+
+    <script>
+        var
+            url     = "{{ url('homepage') }}",
+            share   = "{{ entity.getName() }}";
+    </script>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('/bundles/app/vendor/jquery/dist/jquery.js') }}"></script>
+    <link type="text/css" rel="stylesheet" media="all" href="{{ asset('/bundles/app/vendor/nprogress/nprogress.css') }}">
+    <script src="{{ asset('/bundles/app/vendor/nprogress/nprogress.js') }}"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="{{ asset('/bundles/app/js/main.js') }}"></script>
+{% endblock %}
