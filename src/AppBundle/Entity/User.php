@@ -1,18 +1,16 @@
 <?php
 namespace AppBundle\Entity;
- 
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 use AppBundle\Entity\Role;
-
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
- 
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
@@ -20,7 +18,7 @@ use Symfony\Component\Validator\Constraints\Length;
  */
 class User implements UserInterface, \Serializable
 {
- 
+
     /**
      * @var integer $id
      *
@@ -64,7 +62,7 @@ class User implements UserInterface, \Serializable
      * @var string username
      */
     protected $username;
- 
+
     /**
      * @ORM\Column(type="string", length=255)
      *
@@ -74,14 +72,14 @@ class User implements UserInterface, \Serializable
      * @var string password
      */
     protected $password;
- 
+
     /**
      * @ORM\Column(type="string", length=50)
      *
      * @var string salt
      */
     protected $salt;
- 
+
     /**
      * @ORM\ManyToMany(targetEntity="Role")
      * @ORM\JoinTable(name="user_role",
@@ -112,7 +110,7 @@ class User implements UserInterface, \Serializable
      */
     private $userShare;
 
- 
+
     /**
      *
      * @return string The username.
@@ -121,7 +119,7 @@ class User implements UserInterface, \Serializable
     {
         return $this->username;
     }
- 
+
     /**
      *
      * @param string $value The username.
@@ -130,7 +128,7 @@ class User implements UserInterface, \Serializable
     {
         $this->username = $value;
     }
- 
+
     /**
      *
      * @return string The password.
@@ -139,7 +137,7 @@ class User implements UserInterface, \Serializable
     {
         return $this->password;
     }
- 
+
     /**
      *
      * @param string $value The password.
@@ -148,7 +146,7 @@ class User implements UserInterface, \Serializable
     {
         $this->password = $value;
     }
- 
+
     /**
      *
      * @return string The salt.
@@ -157,7 +155,7 @@ class User implements UserInterface, \Serializable
     {
         return $this->salt;
     }
- 
+
     /**
      *
      * @param string $value The salt.
@@ -166,6 +164,7 @@ class User implements UserInterface, \Serializable
     {
         $this->salt = $value;
     }
+
     /**
      *
      * @return ArrayCollection A Doctrine ArrayCollection
@@ -174,7 +173,7 @@ class User implements UserInterface, \Serializable
     {
         return $this->userRoles;
     }
- 
+
     /**
      * Конструктор класса User
      */
@@ -202,35 +201,34 @@ class User implements UserInterface, \Serializable
 
     /**
      * Gets triggered only on insert
-
      * @ORM\PreUpdate
      */
     public function onPreUpdate()
     {
         $this->updatedAt = new \DateTime();
     }
- 
+
     /**
      * Сброс прав пользователя.
      */
     public function eraseCredentials()
     {
- 
+
     }
- 
+
     /**
-     * 
+     *
      * @return array An array of Role objects
      */
     public function getRoles()
     {
         return $this->getUserRoles()->toArray();
     }
- 
+
     /**
      * Сравнивает пользователя с другим пользователем и определяет
      * один и тот же ли это человек.
-     * 
+     *
      * @param UserInterface $user The user
      * @return boolean True if equal, false othwerwise.
      */
@@ -238,12 +236,12 @@ class User implements UserInterface, \Serializable
     {
         return md5($this->getUsername()) == md5($user->getUsername());
     }
- 
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -266,7 +264,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -289,7 +287,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -312,7 +310,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -335,7 +333,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -358,7 +356,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -434,7 +432,7 @@ class User implements UserInterface, \Serializable
             $this->salt,
             $this->createdAt,
             serialize($this->userRoles),
-         ));
+        ));
     }
 
     /**
@@ -449,6 +447,6 @@ class User implements UserInterface, \Serializable
 
     public function __toString()
     {
-        return (string) $this->id;
+        return (string)$this->id;
     }
 }

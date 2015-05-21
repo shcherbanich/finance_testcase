@@ -4,7 +4,8 @@ namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
-class RoleRepository extends EntityRepository {
+class RoleRepository extends EntityRepository
+{
 
     const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_USER = 'ROLE_USER';
@@ -16,6 +17,6 @@ class RoleRepository extends EntityRepository {
      */
     public function getRoleByName($name)
     {
-        return $this->findOneBy(['name'=>$name]);
+        return $this->findOneBy(['name' => $name]);
     }
 }

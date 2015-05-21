@@ -15,10 +15,10 @@ class ShareType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','hidden', array('label' => 'Символьное представление акции'))
-            ->add('fullName','hidden', array('label' => 'Название акции'));
+            ->add('name', 'hidden', array('label' => 'Символьное представление акции'))
+            ->add('fullName', 'hidden', array('label' => 'Название акции'));
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

@@ -21,13 +21,14 @@ class ShareApiController extends Controller
      * @Route("/get-name", name="get_share_name")
      * @Method("GET")
      */
-    public function nameAction(){
+    public function nameAction()
+    {
 
         $request = Request::createFromGlobals();
 
-        $share   = $request->query->get('q');
+        $share = $request->query->get('q');
 
-        $cache   = $this->get('cache');
+        $cache = $this->get('cache');
 
         $cache->setNamespace('api.nameAction1.cache');
 
@@ -39,9 +40,9 @@ class ShareApiController extends Controller
 
             $response = $client->send($request);
 
-            $json = str_replace('YAHOO.util.UHScriptNodeDataSource.callbacks(','',$response->getBody());
+            $json = str_replace('YAHOO.util.UHScriptNodeDataSource.callbacks(', '', $response->getBody());
 
-            $cached_data = str_replace(']}})',']}}',$json);
+            $cached_data = str_replace(']}})', ']}}', $json);
 
             $cache->save($share, $cached_data, 3600);
         }
@@ -61,9 +62,10 @@ class ShareApiController extends Controller
      * @Route("/chart/{share}", name="get_chart")
      * @Method("GET")
      */
-    public function chartAction($share){
+    public function chartAction($share)
+    {
 
-        $cache   = $this->get('cache');
+        $cache = $this->get('cache');
 
         $cache->setNamespace('api.chartAction.cache');
 

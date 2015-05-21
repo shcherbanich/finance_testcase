@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     NProgress.start();
 
-    $.getJSON(url+'shares/api/chart/'+share, function (data) {
+    $.getJSON(url + 'shares/api/chart/'+share, function (data) {
 
         var chArr = [];
 

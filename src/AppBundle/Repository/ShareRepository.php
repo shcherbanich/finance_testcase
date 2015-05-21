@@ -5,7 +5,8 @@ namespace AppBundle\Repository;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
-class ShareRepository extends EntityRepository {
+class ShareRepository extends EntityRepository
+{
 
     /**
      *
@@ -16,8 +17,7 @@ class ShareRepository extends EntityRepository {
     {
         $qb = $this->createQueryBuilder("s")
             ->where(':user MEMBER OF s.user')
-            ->setParameters(array('user' => $user))
-        ;
+            ->setParameters(array('user' => $user));
         return $qb->getQuery()->getResult();
     }
 
@@ -32,8 +32,7 @@ class ShareRepository extends EntityRepository {
         $qb = $this->createQueryBuilder("s")
             ->where(':user MEMBER OF s.user')
             ->andWhere('s.id = :id')
-            ->setParameters(array('id' => $id,'user' => $user))
-        ;
+            ->setParameters(array('id' => $id, 'user' => $user));
         return $qb->getQuery()->getOneOrNullResult();
     }
 

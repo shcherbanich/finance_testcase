@@ -74,7 +74,7 @@ class Share
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -97,7 +97,7 @@ class Share
     /**
      * Get fullName
      *
-     * @return string 
+     * @return string
      */
     public function getFullName()
     {
@@ -143,7 +143,7 @@ class Share
     /**
      * Get createdat
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -166,7 +166,7 @@ class Share
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -197,7 +197,6 @@ class Share
 
     /**
      * Gets triggered only on insert
-
      * @ORM\PreUpdate
      */
     public function onPreUpdate()
@@ -218,7 +217,7 @@ class Share
     /**
      * Get user
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUser()
     {

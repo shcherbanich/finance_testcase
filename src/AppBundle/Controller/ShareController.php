@@ -35,6 +35,7 @@ class ShareController extends Controller
             'entities' => $entities,
         );
     }
+
     /**
      * Creates a new Share entity.
      *
@@ -65,7 +66,7 @@ class ShareController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -83,7 +84,7 @@ class ShareController extends Controller
             'method' => 'POST',
         ));
 
-      //  $form->add('submit', 'submit', array('label' => 'Create'));
+        //  $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -98,11 +99,11 @@ class ShareController extends Controller
     public function newAction()
     {
         $entity = new Share();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -126,7 +127,7 @@ class ShareController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -152,19 +153,19 @@ class ShareController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a Share entity.
-    *
-    * @param Share $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Share entity.
+     *
+     * @param Share $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Share $entity)
     {
         $form = $this->createForm(new ShareType(), $entity, array(
@@ -176,6 +177,7 @@ class ShareController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Share entity.
      *
@@ -204,11 +206,12 @@ class ShareController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Share entity.
      *
@@ -247,9 +250,8 @@ class ShareController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('shares_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Удалить из списка акций','attr' => ['class' => 'btn btn-danger']))
-            ->getForm()
-        ;
+            ->add('submit', 'submit', array('label' => 'Удалить из списка акций', 'attr' => ['class' => 'btn btn-danger']))
+            ->getForm();
     }
 
 

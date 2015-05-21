@@ -31,7 +31,9 @@ class DefaultController extends Controller
     public function createAction(Request $request)
     {
         $entity = new User();
+
         $form = $this->registrationForm($entity);
+
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -51,7 +53,7 @@ class DefaultController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -70,7 +72,7 @@ class DefaultController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Регистрация', 'attr' =>['class' => 'btn btn-success']));
+        $form->add('submit', 'submit', array('label' => 'Регистрация', 'attr' => ['class' => 'btn btn-success']));
 
         return $form;
     }
@@ -86,11 +88,11 @@ class DefaultController extends Controller
     public function registrationAction()
     {
         $entity = new User();
-        $form   = $this->registrationForm($entity);
+        $form = $this->registrationForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 }
