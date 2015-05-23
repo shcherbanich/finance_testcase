@@ -45,6 +45,7 @@ class ShareController extends Controller
      */
     public function createAction(Request $request)
     {
+
         $entity = new Share();
 
         $form = $this->createCreateForm($entity);
@@ -54,6 +55,10 @@ class ShareController extends Controller
         if ($form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
+
+            $entity = $em->getRepository('AppBundle:Share')->findShareByName($form->getData()->getName(),$entity);
+
+            $entity->removeUser($this->getUser());
 
             $entity->addUser($this->getUser());
 
@@ -83,8 +88,6 @@ class ShareController extends Controller
             'action' => $this->generateUrl('shares_create'),
             'method' => 'POST',
         ));
-
-        //  $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -231,7 +234,8 @@ class ShareController extends Controller
                 throw $this->createNotFoundException('Unable to find Share entity.');
             }
 
-            $em->remove($entity);
+            $entity->removeUser($this->getUser());
+
             $em->flush();
         }
 

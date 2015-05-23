@@ -10,30 +10,49 @@ class ShareRepository extends EntityRepository
 
     /**
      *
-     * @param $name
-     * @return \AppBundle\Entity\Share
+     * @param $user
+     * @return \AppBundle\Entity\Share[]
      */
     public function findSharesByUser(User $user)
     {
         $qb = $this->createQueryBuilder("s")
             ->where(':user MEMBER OF s.user')
             ->setParameters(array('user' => $user));
+
         return $qb->getQuery()->getResult();
     }
 
 
     /**
      *
-     * @param $name
-     * @return \AppBundle\Entity\Share
+     * @param $id
+     * @param $user
+     * @param $default
+     * @return \AppBundle\Entity\Share|mixed
      */
-    public function findShareByUser($id, User $user)
+    public function findShareByUser($id, User $user, $default = null)
     {
         $qb = $this->createQueryBuilder("s")
             ->where(':user MEMBER OF s.user')
             ->andWhere('s.id = :id')
             ->setParameters(array('id' => $id, 'user' => $user));
-        return $qb->getQuery()->getOneOrNullResult();
+
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        return $result?$result:$default;
+    }
+
+    /**
+     *
+     * @param $name
+     * @param $default
+     * @return \AppBundle\Entity\Share|mixed
+     */
+    public function findShareByName($name,$default = null)
+    {
+        $result = $this->findOneBy(['name' => $name]);
+
+        return $result?$result:$default;
     }
 
 }
